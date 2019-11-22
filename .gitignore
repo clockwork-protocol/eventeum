@@ -33,3 +33,6 @@ hs_err_pid*
 
 #ganache
 ganache_data
+
+#node
+node_modules
