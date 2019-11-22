@@ -30,3 +30,6 @@ hs_err_pid*
 .target
 .springBeans
 **/target
+
+#ganache
+ganache_data

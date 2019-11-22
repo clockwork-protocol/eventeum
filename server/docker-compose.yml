@@ -4,35 +4,43 @@ services:
   eventeum:
     image: eventeum/eventeum:latest
     ports:
-    - "8060:8060"
+      - "8060:8060"
     depends_on:
-      - parity
+      - ganache-cli
       - mongodb
       - kafka
     environment:
       SPRING_DATA_MONGODB_HOST: mongodb
-      ETHEREUM_NODE_URL: http://eth-node:8545
+      ETHEREUM_NODE_URL: http://eth-node:9545
       ZOOKEEPER_ADDRESS: zookeeper:2181
       KAFKA_ADDRESSES: kafka:19092
     networks:
       - default
 
-  parity:
-    build:
-      context: .
-      dockerfile: Dockerfile-ParityNode
+  ganache-cli:
+    image: trufflesuite/ganache-cli:latest
     ports:
-      - "8545:8545"
-      - "8180:8180"
-      - "8546:8546"
-    volumes:
-      - $HOME/parity/data:/root/.local/share/io.parity.ethereum
-      - $HOME/parity/log:/data/parity-logs
-    tty: true
+      - "9545:9545"
+    entrypoint:
+      - node
+      - ./ganache-core.docker.cli.js
+      - -m
+      - 'congress false detail border fade run purpose fantasy forum pink inside that'
+      - --networkId
+      - '5777'
+      - --hostname
+      - '0.0.0.0'
+      - -e 
+      - '300'
+      - -p
+      - '9545'
+      - --accounts
+      - '30'
     networks:
       default:
         aliases:
           - eth-node
+
 
   mongodb:
     image: mongo:latest
