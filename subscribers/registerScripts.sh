@@ -32,8 +32,7 @@ http://localhost:8060/api/rest/v1/event-filter \
     {"position": 3, "type": "ADDRESS"},
     {"position": 4, "type": "UINT256"}] }
 }'
-curl -X DELETE http://localhost:8060/api/rest/v1/event-filter/NextPaymentDateSet
-
+#register PaymentScheduleCrNextPaymentDateSeteated7
 curl -X POST \
 http://localhost:8060/api/rest/v1/event-filter \
 -H 'Cache-Control: no-cache' \
@@ -46,5 +45,5 @@ http://localhost:8060/api/rest/v1/event-filter \
   "eventName": "NextPaymentDateSet",
   "nonIndexedParameterDefinitions": [
     {"position": 0, "type": "BYTES32"},
-    {"position": 1, "type": "INT256"} ] }
+    {"position": 1, "type": "UINT256"} ] }
 }'
