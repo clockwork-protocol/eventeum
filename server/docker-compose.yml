@@ -46,8 +46,6 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
-    volumes:
-      - $HOME/mongodb/data/db:/data/db
     networks:
       - default
 
