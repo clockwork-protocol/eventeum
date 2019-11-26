@@ -36,3 +36,10 @@ ganache_data
 
 #node
 node_modules
+
+#app specific
+server/data/pgdata/*
+server/data/metabase-data/*
+
+#mac
+.DS_Store
