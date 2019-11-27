@@ -19,6 +19,7 @@ const messageHandlers = {
       var event = new Event();
       event.name = details.name;
       event.eventId = details.id;
+      event.blockNumber = details.blockNumber;
       event.data = {
         id : details.nonIndexedParameters[0].value,
         paymentLeeway : details.nonIndexedParameters[1].value,
@@ -32,6 +33,7 @@ const messageHandlers = {
       var event = new Event();
       event.name = details.name;
       event.eventId = details.id;
+      event.blockNumber = details.blockNumber;
       event.data = {
         id : details.nonIndexedParameters[0].value,
         nextPaymentDate : new Date(details.nonIndexedParameters[1].value * 1000)
@@ -42,6 +44,7 @@ const messageHandlers = {
       var event = new Event();
       event.name = details.name;
       event.eventId = details.id;
+      event.blockNumber = details.blockNumber;
       event.data = {
         owner : details.nonIndexedParameters[0].value,
         amount : details.nonIndexedParameters[1].value,
@@ -58,6 +61,9 @@ consumer.on("message", async function(message) {
       const event = await messageHandlers[msgObj.details.name](msgObj.details);
       const newEvent = await event.save();
       console.log(newEvent);
+    }
+    else {
+      console.log(msgObj)
     }
   } catch (error) {
     console.error(error);

@@ -8,6 +8,10 @@ const eventSchema = new mongoose.Schema( {
         type : String,
         required : true
     },
+    blockNumber : {
+        type : Number,
+        required : true
+    },
     data : mongoose.Mixed
 });
 
