@@ -1,5 +1,5 @@
 const {setIntervalAsync} = require('set-interval-async/dynamic');
-const testHelper = require("../../test/helpers/truffleTestHelper");
+const testHelper = require("./test-helpers/testHelper");
 
 setIntervalAsync(
     async () => { 
