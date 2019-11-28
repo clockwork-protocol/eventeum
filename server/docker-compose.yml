@@ -107,6 +107,7 @@ services:
       MB_DB_HOST: postgres-db
     depends_on:
       - postgres-db
+      - eventeum
     links:
       - postgres-db
     networks:
