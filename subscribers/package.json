@@ -4,13 +4,15 @@
   "description": "Eventeum subscribers for clockwork",
   "main": "paymentScheduleSubscribers.js",
   "scripts": {
-    "eventeum:listen-dev": "nodemon paymentScheduleSubscribers.js"
+    "subscribe-dev": "nodemon subscribe.js",
+    "advance-time": "node advanceTime.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "kafka-node": "^5.0.0",
-    "mongoose": "^5.7.12"
+    "mongoose": "^5.7.12",
+    "set-interval-async": "1.0.29"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
