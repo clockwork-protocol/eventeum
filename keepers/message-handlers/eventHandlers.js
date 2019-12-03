@@ -4,6 +4,7 @@ async function handleEvent(event) {
     try {
         var handler = eventHandlers[event.name];
         if (handler) {
+            Console.log(`Handling event ${event.name} ...`)
             await handler(event);
         }
     } catch (error) {
