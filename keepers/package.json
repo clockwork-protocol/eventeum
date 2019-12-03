@@ -4,15 +4,16 @@
   "description": "Keeper system for clockwork",
   "main": "subscribe.js",
   "scripts": {
-    "subscribe-dev": "nodemon subscribe.js",
-    "advance-time": "node advanceTime.js"
+    "subscribe": "nodemon subscribe.js",
+    "generate-payments": "nodemon paymentGenerator.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "kafka-node": "^5.0.0",
     "mongoose": "^5.7.12",
-    "set-interval-async": "1.0.29"
+    "set-interval-async": "1.0.29",
+    "web3": "^1.2.4"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
