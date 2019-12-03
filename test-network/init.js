@@ -45,32 +45,6 @@ const testNetwork = {
 const recurringPaymentWallet = new web3.eth.Contract(RecurringPaymentWallet.abi, testNetwork.recurringPaymentsWalletAddress);
 const sourceAccounts = testNetwork.accounts.slice(0,19);
 const destinationAccounts = testNetwork.accounts.slice(20,29);
-takeSnapshot = () => {
-    return new Promise((resolve, reject) => {
-        web3.currentProvider.send({
-            jsonrpc: '2.0',
-            method: 'evm_snapshot',
-            id: new Date().getTime()
-        }, (err, snapshotId) => {
-            if (err) { return reject(err) }
-            return resolve(snapshotId)
-        })
-    })
-}
-
-revertToSnapShot = (id, paymentScheduleCount) => {
-    return new Promise((resolve, reject) => {
-        web3.currentProvider.send({
-            jsonrpc: '2.0',
-            method: 'evm_revert',
-            params: [id],
-            id: new Date().getTime()
-        }, (err, result) => {
-            if (err) { return reject(err) }
-            return resolve(result)
-        })
-    })
-}
 
 printSummary = async (heading) => {
     console.log('\r\n');
@@ -123,32 +97,22 @@ createRandomSubscription = async (account) => {
 
 //todo :
 // move to ramda
-// move testNetwork declaration to own file
 
 async function run() {
-    //Store blockchain state
-    //let snapShot = await takeSnapshot();
-    //let snapshotId = snapShot['result'];
     let amount;
 
     result = await printSummary('Initial state');
-    try {
-        for await (const account of sourceAccounts) {
-            amount = randomAmountInWei(50);
-            await recurringPaymentWallet.methods.deposit().send({from : account, value : amount});
 
-            for (let index = 0; index < Math.floor(Math.random() * 20); index++) {
-                await createRandomSubscription(account);
-            }
-        };
+    for await (const account of sourceAccounts) {
+        amount = randomAmountInWei(50);
+        await recurringPaymentWallet.methods.deposit().send({from : account, value : amount});
 
-        result = await printSummary('After deposit state');
-    } 
-    finally {
-        //restore blockchain state
-       // await revertToSnapShot(snapshotId);
-    }
-    
+        for (let index = 0; index < Math.floor(Math.random() * 20); index++) {
+            await createRandomSubscription(account);
+        }
+    };
+
+    result = await printSummary('After deposit state');
 }
 
 run();
