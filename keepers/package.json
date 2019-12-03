@@ -1,8 +1,8 @@
 {
-  "name": "subscribers",
+  "name": "clockwork-keepers",
   "version": "1.0.0",
-  "description": "Eventeum subscribers for clockwork",
-  "main": "paymentScheduleSubscribers.js",
+  "description": "Keeper system for clockwork",
+  "main": "subscribe.js",
   "scripts": {
     "subscribe-dev": "nodemon subscribe.js",
     "advance-time": "node advanceTime.js"
