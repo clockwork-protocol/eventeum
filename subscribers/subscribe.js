@@ -2,6 +2,7 @@ require('dotenv').config();
 const mongoose = require("mongoose");
 const Event = require("./models/events.js");
 const messageLoggers = require("./message-handlers/messageLoggers");
+const handleEvent = require("./message-handlers/eventHandlers");
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection
@@ -22,8 +23,8 @@ consumer.on("message", async function(message) {
     if (!eventAlreadyHandled) {
       //log the event
       const event = await messageLoggers[msgObj.details.name](msgObj.details);
-      //todo: call event handlers
       const newEvent = await event.save();
+      await handleEvent(event);
       console.log(newEvent);
     }
   } catch (error) {
