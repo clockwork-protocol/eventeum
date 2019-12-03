@@ -1,0 +1,15 @@
+{
+  "name": "clockwork-test-network",
+  "version": "1.0.0",
+  "description": "Test network scripts for clockwork",
+  "main": "advanceTime.js",
+  "scripts": {
+    "advance-time": "node ../test-network/advanceTime.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "set-interval-async": "^1.0.29",
+    "web3": "^1.2.4"
+  }
+}
