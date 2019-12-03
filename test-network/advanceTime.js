@@ -1,5 +1,6 @@
 const {setIntervalAsync} = require('set-interval-async/dynamic');
 const testHelper = require("./testHelper");
+const interval = 3000;
 
 setIntervalAsync(
     async () => { 
@@ -7,5 +8,5 @@ setIntervalAsync(
         console.log(`Advancing time by ${daysToAdvance} days`);
         const newBlock = await testHelper.advanceTimeAndBlock(testHelper.daysToSeconds(1));
     },
-    3000
+    interval
 );
