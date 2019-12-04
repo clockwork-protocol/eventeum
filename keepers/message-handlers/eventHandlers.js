@@ -14,13 +14,12 @@ async function handleEvent(event) {
 }
 const eventHandlers = {
     "NextPaymentDateSet" : async (event) => {
-        const alreadyExists = await PaymentDate.exists({ data : { id : event.data.id }});
+        const alreadyExists = await PaymentDate.exists({ id : event.data.id });
         if (alreadyExists) {
-            var paymentDate = await PaymentDate.find().byId(event.data.id);
-            paymentDate.nextPaymentDate = event.data.nextPaymentDate;
-            paymentDate.save();
+            await PaymentDate.updatePaymentDate(event.data.id, event.data.nextPaymentDate);
         }
         else {
+            console.log("Creating new PaymentDate")
             var paymentDate = new PaymentDate();
             paymentDate.id = event.data.id;
             paymentDate.nextPaymentDate = event.data.nextPaymentDate;

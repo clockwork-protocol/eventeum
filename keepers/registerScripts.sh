@@ -32,7 +32,7 @@ http://localhost:8060/api/rest/v1/event-filter \
     {"position": 3, "type": "ADDRESS"},
     {"position": 4, "type": "UINT256"}] }
 }'
-#register PaymentScheduleCrNextPaymentDateSeteated7
+#register PaymentScheduleNextPaymentDateSet
 curl -X POST \
 http://localhost:8060/api/rest/v1/event-filter \
 -H 'Cache-Control: no-cache' \
