@@ -22,9 +22,10 @@ generatePayment = async(payment) => {
     console.log(`Generating payment for ${payment.id}`);
     try {
         let result = await recurringPaymentWallet.methods.createAndFundDuePaymentForPaymentSchedule(payment.id).send({from : process.env.KEEPER_ADDRESS, gas: 6721975});
-        console.log(result);
+        console.log(`Success : Transaction hash ${result.transactionHash}`);
     }
     catch (err) {
+        //Todo: What do we do about accounts with no balance
         console.error(err.message);
     }
 }
@@ -35,6 +36,7 @@ processPayments = async (err, duePayments) => {
     }
     console.log(`Found ${duePayments.length} due payments.`);
     for await (const payment of duePayments) {
+        //Todo: Enhancement
         //check if payment is actually due
         //if not due then update due date
         //otherwise generate payment
