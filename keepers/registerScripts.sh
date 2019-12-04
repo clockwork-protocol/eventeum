@@ -14,6 +14,24 @@ http://localhost:8060/api/rest/v1/event-filter \
     {"position": 1, "type": "UINT256"} ] }
 }'
 
+#register Payment created
+curl -X POST \
+http://localhost:8060/api/rest/v1/event-filter \
+-H 'Cache-Control: no-cache' \
+-H 'Content-Type: application/json' \
+-H 'Postman-Token: 616712a3-bf11-bbf5-b4ac-b82835779d51' \
+-d '{
+"id": "PaymentCreated",
+"contractAddress": "0xE56fF881317c1B3059957f0c967a115c4992860A",
+"eventSpecification": {
+  "eventName": "PaymentCreated",
+  "nonIndexedParameterDefinitions": [
+    {"position": 0, "type": "BYTES32"},
+    {"position": 1, "type": "UINT256"},
+    {"position": 1, "type": "UINT256"},
+    {"position": 1, "type": "ADDRESS"} ] }
+}'
+
 #register PaymentScheduleCreated
 curl -X POST \
 http://localhost:8060/api/rest/v1/event-filter \

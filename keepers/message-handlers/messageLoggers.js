@@ -36,6 +36,19 @@ const messageLoggers = {
             amount : details.nonIndexedParameters[1].value,
         }
         return event;
+    },
+    "PaymentCreated" : async (details) => {
+        var event = new Event();
+        event.name = details.name;
+        event.eventId = details.id;
+        event.blockNumber = details.blockNumber;
+        event.data = {
+            id : details.nonIndexedParameters[0].value,
+            overdueDate : new Date(details.nonIndexedParameters[1].value * 1000),
+            paymentAmount : details.nonIndexedParameters[2].value,
+            destination : details.nonIndexedParameters[3].value
+        }
+        return event;
     }
 }
 
