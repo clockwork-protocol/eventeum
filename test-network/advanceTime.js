@@ -1,6 +1,6 @@
 const {setIntervalAsync} = require('set-interval-async/dynamic');
 const testHelper = require("./testHelper");
-const interval = 3000;
+const interval = 5000;
 
 setIntervalAsync(
     async () => { 
