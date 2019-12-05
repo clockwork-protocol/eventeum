@@ -28,8 +28,25 @@ http://localhost:8060/api/rest/v1/event-filter \
   "nonIndexedParameterDefinitions": [
     {"position": 0, "type": "BYTES32"},
     {"position": 1, "type": "UINT256"},
-    {"position": 1, "type": "UINT256"},
-    {"position": 1, "type": "ADDRESS"} ] }
+    {"position": 2, "type": "UINT256"},
+    {"position": 3, "type": "ADDRESS"},
+    {"position": 4, "type": "UINT256"} ] }
+}'
+
+#register Payment Executed
+curl -X POST \
+http://localhost:8060/api/rest/v1/event-filter \
+-H 'Cache-Control: no-cache' \
+-H 'Content-Type: application/json' \
+-H 'Postman-Token: 616712a3-bf11-bbf5-b4ac-b82835779d51' \
+-d '{
+"id": "PaymentExecuted",
+"contractAddress": "0xE56fF881317c1B3059957f0c967a115c4992860A",
+"eventSpecification": {
+  "eventName": "PaymentExecuted",
+  "nonIndexedParameterDefinitions": [
+    {"position": 0, "type": "BYTES32"},
+    {"position": 1, "type": "UINT256"} ] }
 }'
 
 #register PaymentScheduleCreated

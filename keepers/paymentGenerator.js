@@ -48,8 +48,8 @@ setIntervalAsync(
     async () => {
         const blockNumber = await web3.eth.getBlockNumber();
         const block = await web3.eth.getBlock(blockNumber);
-        const time = new Date(block.timestamp*1000)
-        console.log(`Checking for due payments @ block #${blockNumber} on ${time.toUTCString()}`) 
+        const time = new Date(block.timestamp*1000);
+        console.log(`Checking for due payments @ block #${blockNumber} on ${time.toUTCString()}`); 
         PaymentDate.find({ nextPaymentDate : { $lt : time}}, processPayments);
     },
     interval

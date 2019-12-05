@@ -1,5 +1,12 @@
 const PaymentDate = require("../models/paymentDate.js");
 
+//connect to Ethereum
+const rpcURL = process.env.ETHEREUM_RPC_URL;
+const Web3 = require('web3');
+const web3 = new Web3(rpcURL);
+const Payment = require(process.env.PAYMENT_ABI);
+const payment = new web3.eth.Contract(Payment.abi, process.env.PAYMENT_ADDRESS);
+
 async function handleEvent(event) {
     try {
         var handler = eventHandlers[event.name];
@@ -25,6 +32,16 @@ const eventHandlers = {
             paymentDate.nextPaymentDate = event.data.nextPaymentDate;
             paymentDate.save();
         }
+    },
+    "PaymentCreated" : async (event) => {
+        console.log(`Executing payment ${event.data.id}`);
+    try {
+        let result = await payment.methods.execute(event.data.id).send({from : process.env.KEEPER_ADDRESS, gas: 6721975});
+        console.log(`Success : Transaction hash ${result.transactionHash}`);
+    }
+    catch (err) {
+        console.error(err);
+    }
     }
 }
 
